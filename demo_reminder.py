@@ -8,9 +8,7 @@ SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 # need to set this locally
 slack_client = SlackClient(SLACK_BOT_TOKEN)
 
-
 # access a spreadsheet
-
 scope = ['https://spreadsheets.google.com/feeds']
 creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 client = gspread.authorize(creds)
@@ -22,7 +20,6 @@ data = sheet.get_all_values()
 date=datetime.datetime.now()
 
 todays_date=str("%s/%s/%s" % (date.month, date.day, date.year))
-
 
 proctors=[]
 for line in data:
@@ -47,7 +44,6 @@ if confirmation_of_list not in correct_answer:
 #slack message that will be sent
 message = 'Hey someone signed up for a demo and today is your day to proctor. Check here https://goo.gl/BpsZNq to see the detials'
 sent_to=[]
-
 
 count=0
 response = slack_client.api_call('users.list') #pulls full list of users in slack
